@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import TextField from './src/components/TextField'
+import { KontenbaseClient } from '@kontenbase/sdk'
+import axios from 'axios';
+import ToDoList from './src/components/ToDoList';
 
 export default function App() {
+  const kontenbase = new KontenbaseClient({ apiKey: 'https://api.kontenbase.com/query/api/v1/1c55b5c1-2ad0-458c-9f34-b4c5e5fcc640/' })
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
+      <ToDoList/>
+      <TextField/>
+
     </View>
   );
 }
