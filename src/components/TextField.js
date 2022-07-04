@@ -16,18 +16,19 @@ export default function TextField () {
   };
 
   const sendTodo = () => {
-    axios({
-      method: 'post',
-      url: 'https://api.kontenbase.com/query/api/v1/1c55b5c1-2ad0-458c-9f34-b4c5e5fcc640/todo',
-      data: JSON.stringify({
-        name: value,
-        isDone: false
-      }),
-      headers: {
-        'Content-type': 'application/json',
-      }
-    });
+    const data = JSON.stringify({
+      name: value,
+      isDone: false})
+
+      const config = {
+        headers: {
+          'Content-type': 'application/json',
+        },
+      };
+    axios.post('https://api.kontenbase.com/query/api/v1/1c55b5c1-2ad0-458c-9f34-b4c5e5fcc640/todo', data, config)
+    window.location.reload()
   }
+
   return (
     <View style={{marginTop:10, justifyContent:'center'}}>
       <SafeAreaView>

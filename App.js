@@ -6,7 +6,7 @@ import axios from 'axios';
 import ToDoList from './src/components/ToDoList';
 
 export default function App() {
-  const kontenbase = new KontenbaseClient({ apiKey: 'https://api.kontenbase.com/query/api/v1/1c55b5c1-2ad0-458c-9f34-b4c5e5fcc640/' })
+  const kontenbase = new KontenbaseClient({ apiKey: '1c55b5c1-2ad0-458c-9f34-b4c5e5fcc640' })
 
   return (
     <View style={styles.container}>

@@ -10,7 +10,8 @@ export default function ToDoList() {
     //Init State
     const [todos, setTodos] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [idDelete, setIdDelete] = useState(null);
+    const [idDelete, setIdDelete] = useState(null)
+    const [idUpdate, setIdUpdate] = useState(null)
 
 
 
@@ -39,9 +40,19 @@ export default function ToDoList() {
         setIdDelete(id);
         axios
         .delete(`https://api.kontenbase.com/query/api/v1/1c55b5c1-2ad0-458c-9f34-b4c5e5fcc640/todo/${id}`)
+        .then (() => {
+            window.location.reload()
+        })
     };
 
-    // const handleUpdate 
+    const handleUpdate = (id) => {
+        setIdUpdate(id);
+        axios
+        .patch(`https://api.kontenbase.com/query/api/v1/1c55b5c1-2ad0-458c-9f34-b4c5e5fcc640/todo/${id}`, {isDone:true})
+        .then (() => {
+            window.location.reload()
+        })
+    }
     // let style = item.name
     // ? {
     //     textDecorationLine: "line-through",
@@ -59,7 +70,7 @@ export default function ToDoList() {
                 bottomDivider>
                 <ListItem.Content style={{ flexDirection: 'row' }}>
                     <ListItem.Title h5 numberOfLines={1}>{item.name}</ListItem.Title>
-                    <TouchableOpacity style={{ marginLeft: 10, backgroundColor: 'black', borderRadius: 2, width: 15 }}><Text h4 style={{ color: 'white', textAlign: 'center' }}>V</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => { handleUpdate(item._id); }} style={{ marginLeft: 10, backgroundColor: 'black', borderRadius: 2, width: 15 }}><Text h4 style={{ color: 'white', textAlign: 'center' }}>V</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => { handleDelete(item._id); }} style={{ marginLeft: 10, backgroundColor: 'black', borderRadius: 2, width: 15 }}><Text h4 style={{ color: 'white', textAlign: 'center' }}>X</Text></TouchableOpacity>
                 </ListItem.Content>
             </ListItem>
